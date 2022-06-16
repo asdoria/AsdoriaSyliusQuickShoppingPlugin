@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Asdoria\SyliusWebImagePlugin\Application;
+namespace Tests\Asdoria\SyliusQuickShoppingPlugin\Application;
 
 use PSS\SymfonyMockerContainer\DependencyInjection\MockerContainer;
 use Sylius\Bundle\CoreBundle\Application\Kernel as SyliusKernel;

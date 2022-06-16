@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Tests\Asdoria\SyliusWebImagePlugin\Application\Kernel;
+use Tests\Asdoria\SyliusQuickShoppingPlugin\Application\Kernel;
 use Symfony\Component\ErrorHandler\Debug;
 use Symfony\Component\HttpFoundation\Request;
 
