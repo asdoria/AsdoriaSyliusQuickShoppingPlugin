@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+
+    <mapped-superclass name="Asdoria\SyliusQuickShoppingPlugin\Entity\QuickShoppingGroup" table="asdoria_quick_shopping_group">
+
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="name" column="name" type="string" length="255"/>
+
+        <one-to-one field="image" target-entity="Asdoria\SyliusQuickShoppingPlugin\Model\QuickShoppingGroupImageInterface" mapped-by="owner" >
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+
+        <one-to-many field="retailers" target-entity="Asdoria\SyliusQuickShoppingPlugin\Model\QuickShoppingInterface" mapped-by="retailerGroup">
+            <cascade>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
+
+    </mapped-superclass>
+
+</doctrine-mapping>

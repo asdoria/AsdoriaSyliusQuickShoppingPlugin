@@ -1,0 +1,9 @@
+asdoria_shop_quick_shopping_ajax:
+    resource: "shop/ajax.yaml"
+    prefix: /ajax
+
+asdoria_shop_quick_shopping_index:
+    path: /quick-shopping
+    methods: [GET, POST]
+    defaults:
+        _controller: Asdoria\SyliusQuickShoppingPlugin\Controller\Shop\QuickShoppingController

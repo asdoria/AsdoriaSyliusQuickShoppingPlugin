@@ -1,0 +1,12 @@
+services:
+    Asdoria\SyliusQuickShoppingPlugin\Controller\Shop\QuickShoppingController:
+        public: true
+        arguments:
+            $twig: '@twig'
+            $formFactory: '@form.factory'
+            $bulkAddToCartCommandFactory: '@Asdoria\SyliusQuickShoppingPlugin\Factory\BulkAddToCartCommandFactory'
+            $validator: '@validator'
+            $urlGenerator: '@sylius.router.checkout_state'
+            $orderModifier: '@sylius.order_modifier'
+            $cartManager: '@sylius.manager.order'
+            $validationGroups: '%sylius.form.type.order_item.validation_groups%'

@@ -1,0 +1,3 @@
+asdoria_shop_quick_shopping:
+    resource: "routes/shop.yaml"
+    prefix: /{_locale}

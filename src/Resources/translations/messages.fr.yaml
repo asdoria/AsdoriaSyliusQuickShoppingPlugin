@@ -1,0 +1,6 @@
+asdoria_quick_shopping:
+    ui:
+        shop:
+            title: Quick Shopping
+            header: Quick Shopping
+            sub_header: Add multiple products to your shopping cart by name

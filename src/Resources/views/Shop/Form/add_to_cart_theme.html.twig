@@ -1,0 +1,66 @@
+{% extends '@SyliusUi/Form/theme.html.twig' %}
+{% block collection_widget -%}
+    {% from '@SyliusResource/Macros/notification.html.twig' import error %}
+    {% import _self as self %}
+    {% set attr = attr|merge({'class': attr.class|default ~ ' controls collection-widget'}) %}
+
+    {% apply spaceless %}
+        <div data-form-type="collection" {{ block('widget_container_attributes') }}
+            {% if prototype is defined and allow_add %}
+                data-prototype='{{ self.collection_item(prototype, allow_delete, button_delete_label, prototype.vars.name)|e }}'
+                data-prototype-name='{{ prototype.vars.name }}'
+            {%- endif -%}
+        >
+            {{ error(form.vars.errors) }}
+
+            {% if prototypes|default is iterable %}
+                {% for key, subPrototype in prototypes %}
+                    <input type="hidden" data-form-prototype="{{ key }}"
+                           value="{{ self.collection_item(subPrototype, allow_delete, button_delete_label, subPrototype.vars.name)|e }}"
+                           data-subprototype-name="{{ subPrototype.vars.name }}"
+                    />
+                {% endfor %}
+            {% endif %}
+
+            <div data-form-collection="list">
+                {% for child in form %}
+                    {{ self.collection_item(child, allow_delete, button_delete_label, loop.index0) }}
+                {% endfor %}
+            </div>
+
+            {% if prototype is defined and allow_add %}
+                <a href="#" class="ui labeled icon button" data-form-collection="add">
+                    <i class="plus square outline icon"></i>
+                    {{ button_add_label|trans }}
+                </a>
+            {% endif %}
+        </div>
+    {% endapply %}
+{%- endblock collection_widget %}
+{% macro collection_item(form, allow_delete, button_delete_label, index) %}
+    {% spaceless %}
+        <div data-form-collection="item" data-form-collection-index="{{ index }}" class="ui stackable grid">
+            <div class="height wide column left action">
+                {{ form_row(form.cartItem.variant, {'remote_url': path('asdoria_shop_quick_shopping_ajax_all_product_variants_by_phrase'), 'remote_criteria_type': 'contains', 'remote_criteria_name': 'phrase', 'load_edit_url': path('asdoria_shop_quick_shopping_ajax_all_product_variants_by_codes')}) }}
+            </div>
+            <div class="two wide column">
+                {{ form_row(form.cartItem.quantity) }}
+            </div>
+            <div class="three wide column">
+                <div id="details-container-variant" data-price-trans="{{ 'sylius.ui.price'| trans }}"></div>
+            </div>
+            {% if allow_delete %}
+                <div class="one wide column " style="margin-top:20px;">
+                    <a href="#" data-form-collection="delete" class="ui left red icon button"
+                       style="margin-bottom: 1em;">
+                        <i class="trash icon"></i>
+{#                        &nbsp;#}
+{#                        {{ button_delete_label|trans }}#}
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endmacro %}
+
+{#<a class="result"><div class="image"> <img src="https://sylius-demo.bitbag.io/media/cache/resolve/sylius_shop_product_thumbnail/12/bd/1d3d4145f18dc25f49867bef3232.jpg"></div><div class="content"><div class="price">$9.06</div><div class="title">000F_office_grey_jeans-variant-0</div><div class="description">000F office grey jeans</div></div></a>#}

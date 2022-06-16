@@ -1,0 +1,11 @@
+services:
+
+    Asdoria\SyliusQuickShoppingPlugin\EventListener\ProductVariantEntitySubscriber:
+        arguments:
+            $router: '@router'
+            $channelContext: '@sylius.context.channel'
+            $localeContext: '@sylius.context.locale'
+            $currencyContext: '@sylius.context.currency'
+            $moneyFormatter: '@sylius.money_formatter'
+        tags:
+            - { name: jms_serializer.event_subscriber}

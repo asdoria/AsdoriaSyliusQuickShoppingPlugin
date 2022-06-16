@@ -1,0 +1,13 @@
+App\Entity\Product\ProductVariant:
+    exclusion_policy: ALL
+    xml_root_name: variant
+    properties:
+        id:
+            expose: true
+            type: integer
+            xml_attribute: true
+            groups: [Default, Detailed, DetailedCart, Autocomplete]
+    virtual_properties:
+        getImage:
+            serialized_name: image
+            groups: [Autocomplete]

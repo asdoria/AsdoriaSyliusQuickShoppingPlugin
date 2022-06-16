@@ -1,0 +1,12 @@
+{
+  "entrypoints": {
+    "shop-quick-shopping": {
+      "css": [
+        "/bundles/asdoriasyliusquickshoppingplugin/shop-quick-shopping.min.css"
+      ],
+      "js": [
+        "/bundles/asdoriasyliusquickshoppingplugin/shop-quick-shopping.min.js"
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+parameters:
+    sylius.form.type.bulk_add_to_cart.validation_groups: ['sylius']
+services:
+    asdoria_quick_shopping.form.type.bulk_add_to_cart:
+        class: Asdoria\SyliusQuickShoppingPlugin\Form\Type\BulkAddToCartType
+        arguments:
+            $cartContext: '@sylius.context.cart'
+            $bulkAddToCartCommandFactory: '@Asdoria\SyliusQuickShoppingPlugin\Factory\BulkAddToCartCommandFactory'
+            $dataClass: 'Asdoria\SyliusQuickShoppingPlugin\Controller\Shop\BulkAddToCartCommand'
+            $validationGroups: '%sylius.form.type.bulk_add_to_cart.validation_groups%'
+        tags:
+            - { name: form.type }
+
+    asdoria_quick_shopping.form.type.bulk_add_to_cart_item:
+        class: Asdoria\SyliusQuickShoppingPlugin\Form\Type\BulkAddToCartItemType
+        arguments:
+            $dataClass: 'Sylius\Bundle\OrderBundle\Controller\AddToCartCommand'
+            $validationGroups: '%sylius.form.type.add_to_cart.validation_groups%'
+        tags:
+            - { name: form.type }
+
+    asdoria_quick_shopping.form.type.cart_item:
+        class: Asdoria\SyliusQuickShoppingPlugin\Form\Type\CartItemType
+        parent: sylius.form.type.cart_item
+        tags:
+            - { name: form.type }

@@ -1,0 +1,19 @@
+framework:
+    assets:
+        packages:
+            asdoria_sylius_quick_shopping_plugin:
+                base_path: '/bundles/asdoriasyliusquickshoppingplugin'
+
+sylius_ui:
+    events:
+        asdoria.shop.index_quick_shopping.stylesheets:
+            blocks:
+                comparator:
+                    template: "@AsdoriaSyliusQuickShoppingPlugin/Shop/_stylesheets.html.twig"
+                    priority: 5
+
+        asdoria.shop.index_quick_shopping.javascripts:
+            blocks:
+                comparator:
+                    template: "@AsdoriaSyliusQuickShoppingPlugin/Shop/_javascripts.html.twig"
+                    priority: 5

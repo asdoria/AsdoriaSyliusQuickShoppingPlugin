@@ -1,0 +1,35 @@
+Asdoria\SyliusQuickShoppingPlugin\Entity\QuickShopping:
+    constraints:
+        -   Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+                fields: [ name ]
+                groups: [ sylius ]
+                message: 'asdoria.ui.retailer.name.unique'
+    properties:
+        name:
+            -   NotBlank:
+                    groups: [ sylius ]
+                    message: 'asdoria.ui.retailer.name.not_blank'
+        street:
+            -   NotBlank:
+                    groups: [ sylius ]
+                    message: 'asdoria.ui.retailer.street.not_blank'
+        city:
+            -   NotBlank:
+                    groups: [ sylius ]
+                    message: 'asdoria.ui.retailer.city.not_blank'
+        postcode:
+            -   NotBlank:
+                    groups: [ sylius ]
+                    message: 'asdoria.ui.retailer.zipcode.not_blank'
+        phoneNumber:
+            -   NotBlank:
+                    groups: [ sylius ]
+                    message: 'asdoria.ui.retailer.phoneNumber.not_blank'
+        latitude:
+            -   NotBlank:
+                    groups: [ sylius ]
+                    message: 'asdoria.ui.retailer.latitude.not_blank'
+        longitude:
+            -   NotBlank:
+                    groups: [ sylius ]
+                    message: 'asdoria.ui.retailer.longitude.not_blank'

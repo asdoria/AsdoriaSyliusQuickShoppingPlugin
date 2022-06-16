@@ -1,0 +1,3 @@
+asdoria_shop_quick_shopping_ajax_product_variant:
+    resource: "ajax/product_variant.yaml"
+    prefix: /product-variants

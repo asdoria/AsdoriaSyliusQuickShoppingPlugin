@@ -1,0 +1,38 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{%- block title %}{{ 'asdoria_quick_shopping.ui.shop.title'|trans }}{% endblock -%}
+
+{% block robots %}
+    <meta name="robots" content="none">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'assets/shop/css/style.css'} %}
+    {{ sylius_template_event('asdoria.shop.index_quick_shopping.stylesheets') }}
+{% endblock %}
+
+{% block content %}
+    {% if form is defined %}
+        {% form_theme form '@AsdoriaSyliusQuickShoppingPlugin/Shop/Form/add_to_cart_theme.html.twig' %}
+    {% endif %}
+    <h1 class="ui monster section dividing header">
+        {{ 'asdoria_quick_shopping.ui.shop.header'|trans }}
+        <div class="sub header">
+            {{ 'asdoria_quick_shopping.ui.shop.sub_header' |trans }}
+        </div>
+    </h1>
+    <div class="ui segment">
+        {{ form_start(form, {'action': path('asdoria_shop_quick_shopping_index'), 'attr': {'id': 'asdoria-bulk-adding-to-cart', 'class': 'ui loadable form', 'novalidate': 'novalidate', 'data-redirect': path('sylius_shop_cart_summary')}}) }}
+        {{ form_errors(form) }}
+        {{ form_row(form.cartItems) }}
+        <button type="submit" class="ui huge primary icon labeled button" {{ sylius_test_html_attribute('add-to-cart-button') }}><i class="cart icon"></i> {{ 'sylius.ui.add_to_cart'|trans }}</button>
+        {{ form_row(form._token) }}
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ sylius_template_event('asdoria.shop.index_quick_shopping.javascripts') }}
+{% endblock %}
