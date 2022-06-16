@@ -14,7 +14,7 @@ services:
     asdoria_quick_shopping.form.type.bulk_add_to_cart_item:
         class: Asdoria\SyliusQuickShoppingPlugin\Form\Type\BulkAddToCartItemType
         arguments:
-            $dataClass: 'Sylius\Bundle\OrderBundle\Controller\AddToCartCommand'
+            $dataClass: 'Asdoria\SyliusQuickShoppingPlugin\Controller\Shop\AddToCartCommand'
             $validationGroups: '%sylius.form.type.add_to_cart.validation_groups%'
         tags:
             - { name: form.type }

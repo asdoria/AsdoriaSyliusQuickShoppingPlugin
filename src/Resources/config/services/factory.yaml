@@ -1,7 +1,9 @@
 services:
+    Asdoria\SyliusQuickShoppingPlugin\Factory\AddToCartCommandFactory: ~
     Asdoria\SyliusQuickShoppingPlugin\Factory\BulkAddToCartCommandFactory:
         arguments:
             $cartContext: '@sylius.context.cart'
             $orderItemFactory: '@sylius.factory.order_item'
-            $addToCartCommandFactory: '@sylius.factory.add_to_cart_command'
+            $addToCartCommandFactory: '@Asdoria\SyliusQuickShoppingPlugin\Factory\AddToCartCommandFactory'
             $orderItemQuantityModifier: '@sylius.order_item_quantity_modifier'
+
