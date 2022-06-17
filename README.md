@@ -18,7 +18,6 @@
 
 </div>
 
- QuickShoppings Group and custom retailer creation:
 <div style="max-width: 75%; height: auto; margin: auto">
 
 ![Example of major retailer and custom retailer creation](doc/create-quick-shoppingsgroup-group.gif)
@@ -54,5 +53,5 @@ imports:
 
 ## Usage
 
-1. In the shop office, got to /en_US/quick-shopping route.
+1. In the shop office, go to /en_US/quick-shopping route.
 
