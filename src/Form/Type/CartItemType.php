@@ -37,7 +37,7 @@ class CartItemType extends BaseCartItemType
                 ],
             ])
             ->add('variant', ResourceAutocompleteChoiceType::class, [
-                    'label' => 'sylius.ui.variants',
+                    'label' => 'sylius.ui.variant',
                     'multiple' => false,
                     'required' => true,
                     'choice_name' => 'descriptor',
