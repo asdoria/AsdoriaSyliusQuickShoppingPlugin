@@ -16,6 +16,10 @@
  
 ![Leaflet Map](doc/map.png)
 
+![Add to Cart](doc/addtocart.gif)
+
+![Your shopping](doc/yourshopping.png)
+
 </div>
 
  QuickShoppings Group and custom retailer creation:
