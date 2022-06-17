@@ -1,0 +1,8 @@
+services:
+    Asdoria\SyliusQuickShoppingPlugin\Helper\ProductVariantHelper:
+        arguments:
+            $router: '@router'
+            $channelContext: '@sylius.context.channel'
+            $localeContext: '@sylius.context.locale'
+            $currencyContext: '@sylius.context.currency'
+            $moneyFormatter: '@sylius.money_formatter'

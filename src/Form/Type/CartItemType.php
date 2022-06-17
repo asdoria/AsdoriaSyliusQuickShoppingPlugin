@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Sylius\Bundle\OrderBundle\Form\Type\CartItemType as BaseCartItemType;
 
 /**
@@ -25,16 +26,26 @@ class CartItemType extends BaseCartItemType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         parent::buildForm($builder, $options);
-        $builder->add('variant', ResourceAutocompleteChoiceType::class, [
-                'label' => 'sylius.ui.variants',
-                'multiple' => false,
-                'required' => true,
-                'choice_name' => 'descriptor',
-                'choice_value' => 'code',
-                'resource' => 'sylius.product_variant',
+        $builder
+            ->remove('quantity')
+            ->add('quantity', IntegerType::class, [
+                'attr' => ['min' => 1],
+                'label' => 'sylius.ui.quantity',
                 'constraints' => [
                     new NotBlank(['groups' => 'sylius']),
+                    new GreaterThanOrEqual(['groups' => 'sylius', 'value' => 1]),
                 ],
+            ])
+            ->add('variant', ResourceAutocompleteChoiceType::class, [
+                    'label' => 'sylius.ui.variants',
+                    'multiple' => false,
+                    'required' => true,
+                    'choice_name' => 'descriptor',
+                    'choice_value' => 'code',
+                    'resource' => 'sylius.product_variant',
+                    'constraints' => [
+                        new NotBlank(['groups' => 'sylius']),
+                    ],
             ]);
     }
 

@@ -47,20 +47,28 @@
                 {{ form_row(form.cartItem.quantity) }}
             </div>
             <div class="three wide column">
-                <div id="details-container-variant" data-price-trans="{{ 'sylius.ui.price'| trans }}"></div>
+                <div id="details-container-variant" data-price-trans="{{ 'sylius.ui.price'| trans }}">
+                    {% set price = quick_shopping_product_variant_price(form.cartItem.variant.vars.data, 1) %}
+                    {% set currencySymbol = sylius.currencyCode|currency_symbol %}
+                    <div class="field"
+                         data-image="{{ quick_shopping_product_variant_image(form.cartItem.variant.vars.data) }}"
+                         data-currency-symbol="{{ currencySymbol }}"
+                         data-unit-price="{{ quick_shopping_product_variant_unit_price(price)}}">
+                        <label>{{ 'sylius.ui.price'|trans }}</label>
+                        <span>
+                            {{ quick_shopping_product_variant_price(form.cartItem.variant.vars.data, form.cartItem.quantity.vars.data) }}
+                        </span>
+                    </div>
+                </div>
             </div>
             {% if allow_delete %}
                 <div class="one wide column " style="margin-top:20px;">
                     <a href="#" data-form-collection="delete" class="ui left red icon button"
                        style="margin-bottom: 1em;">
                         <i class="trash icon"></i>
-{#                        &nbsp;#}
-{#                        {{ button_delete_label|trans }}#}
                     </a>
                 </div>
             {% endif %}
         </div>
     {% endspaceless %}
 {% endmacro %}
-
-{#<a class="result"><div class="image"> <img src="https://sylius-demo.bitbag.io/media/cache/resolve/sylius_shop_product_thumbnail/12/bd/1d3d4145f18dc25f49867bef3232.jpg"></div><div class="content"><div class="price">$9.06</div><div class="title">000F_office_grey_jeans-variant-0</div><div class="description">000F office grey jeans</div></div></a>#}

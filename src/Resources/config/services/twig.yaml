@@ -1,0 +1,7 @@
+services:
+    Asdoria\SyliusQuickShoppingPlugin\Twig\QuickShoppingExtension:
+        arguments:
+            $productVariantHelper: '@Asdoria\SyliusQuickShoppingPlugin\Helper\ProductVariantHelper'
+            $productVariantRepository: '@sylius.repository.product_variant'
+        tags:
+            - { name: twig.extension }

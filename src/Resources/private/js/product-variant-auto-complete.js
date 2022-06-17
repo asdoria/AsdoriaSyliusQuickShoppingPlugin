@@ -76,19 +76,20 @@ $.fn.extend({
           const image                 = row.find('img.ui.avatar.image').attr('src');
           const unitPriceAndCurrency  = row.find('span.description').html();
           const unitPrice             = unitPriceAndCurrency.match('[+-]?[0-9]+([.][0-9]+)?([eE][+-]?[0-9]+)?').shift()
-          const currencyCode          = unitPriceAndCurrency.replace(unitPrice, '')
-          const pricing               = !!quantity ? parseInt(quantity) * parseFloat(unitPrice): '0';
+          const currencySymbol        = unitPriceAndCurrency.replace(unitPrice, '')
+          const pricing               = !!quantity ? (parseInt(quantity) * parseFloat(unitPrice)).toFixed(2) : 0;
+
           container.empty();
           container.append($('' +
-            '<div class="field" data-image="' + image + '" data-currency-code="' + currencyCode + '" data-unit-price="' + unitPrice + '">' +
+            '<div class="field" data-image="' + image + '" data-currency-symbol="' + currencySymbol + '" data-unit-price="' + unitPrice + '">' +
               '<label>' + priceTrans + '</label>' +
-              '<span>' + currencyCode + pricing + '</span>' +
+              '<span>' + currencySymbol + pricing + '</span>' +
             '</div>')
           )
         },
         onRemove(removedValue, removedText, $removedChoice) {
           container.empty();
-        },
+        }
       });
     });
   },
@@ -103,13 +104,14 @@ const initQuantityEventListener = (ele) => {
 
     if (!fieldContainer) return
 
-    const {unitPrice, currencyCode} = fieldContainer.dataset
+    const {unitPrice, currencySymbol} = fieldContainer.dataset
 
-    if (!unitPrice || !currencyCode) return;
+    if (!unitPrice || !currencySymbol) return;
 
+    debugger
     const pricing  = parseInt(currentTarget.value) * unitPrice;
     const span     = document.createElement('span')
-    span.innerHTML = currencyCode + pricing
+    span.innerHTML = currencySymbol + pricing
 
     fieldContainer.querySelector('span').remove()
     fieldContainer.append(span)
