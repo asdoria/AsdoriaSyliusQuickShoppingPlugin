@@ -20,8 +20,6 @@
 
 <div style="max-width: 75%; height: auto; margin: auto">
 
-![Example of major retailer and custom retailer creation](doc/create-quick-shoppingsgroup-group.gif)
-
 </div>
 
  
