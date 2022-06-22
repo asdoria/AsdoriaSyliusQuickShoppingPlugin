@@ -51,7 +51,9 @@ imports:
 
 ## Demo
 
-You can try the QuickShopping plugin online by following this link: [here!](https://demo-sylius.asdoria.fr/en_US/quick-shopping) .
+You can try the QuickShopping plugin online by following this link: [here!](https://demo-sylius.asdoria.fr/en_US/quick-shopping).
+
+Note that we have developed several other open source plugins for Sylius, whose demos and documentation are listed on the [following page](https://asdoria.github.io/).
 
 ## Usage
 
