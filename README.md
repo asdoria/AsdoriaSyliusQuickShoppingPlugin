@@ -49,6 +49,10 @@ imports:
     - { resource: "@AsdoriaSyliusQuickShoppingPlugin/Resources/config/config.yaml"}
 ```
 
+## Demo
+
+You can try the QuickShopping plugin online by following this link: [here!](https://demo-sylius.asdoria.fr/en_US/quick-shopping) .
+
 ## Usage
 
 1. In the shop office, go to /en_US/quick-shopping route.
