@@ -50,32 +50,32 @@ imports:
 ```
 
 5. Paste the following content to the `src/Repository/ProductVariantRepository.php`:
-     ```php
-     <?php
-   
-     declare(strict_types=1);
-   
-     namespace App\Repository;
+```php
+  <?php
 
-     use Asdoria\SyliusQuickShoppingPlugin\Repository\Model\ProductVariantRepositoryAwareInterface;
-     use Asdoria\SyliusQuickShoppingPlugin\Repository\ProductVariantRepositoryTrait;
-     use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductVariantRepository as BaseProductVariantRepository;
-     
-     final class ProductVariantRepository extends BaseProductVariantRepository implements ProductVariantRepositoryAwareInterface
-     {
-         use ProductVariantRepositoryTrait;
-     }
-     ```
+  declare(strict_types=1);
+
+  namespace App\Repository;
+
+  use Asdoria\SyliusQuickShoppingPlugin\Repository\Model\ProductVariantRepositoryAwareInterface;
+  use Asdoria\SyliusQuickShoppingPlugin\Repository\ProductVariantRepositoryTrait;
+  use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductVariantRepository as BaseProductVariantRepository;
+  
+  final class ProductVariantRepository extends BaseProductVariantRepository implements ProductVariantRepositoryAwareInterface
+  {
+      use ProductVariantRepositoryTrait;
+  }
+```
    
 6. Configure repositories in `config/packages/_sylius.yaml`:
-   ```diff  
-    sylius_product:
-        resources:
-            product_variant:
-                classes:
-                    model: App\Entity\Product\ProductVariant
-   +                repository: App\Repository\ProductVariantRepository
-   ```
+```diff  
+ sylius_product:
+     resources:
+         product_variant:
+             classes:
+                 model: App\Entity\Product\ProductVariant
++                repository: App\Repository\ProductVariantRepository
+```
    
 ## Demo
 
