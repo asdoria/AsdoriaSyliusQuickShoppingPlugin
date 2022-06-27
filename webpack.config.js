@@ -42,7 +42,6 @@ Encore
     css: '[name].min.css',
   })
 
-  .enableVueLoader();
 ;
 
 config = Encore.getWebpackConfig();
