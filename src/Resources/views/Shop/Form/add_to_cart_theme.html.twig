@@ -4,7 +4,6 @@
     {% import _self as self %}
     {% set attr = attr|merge({'class': attr.class|default ~ ' controls collection-widget'}) %}
 
-    {% apply spaceless %}
         <div data-form-type="collection" {{ block('widget_container_attributes') }}
             {% if prototype is defined and allow_add %}
                 data-prototype='{{ self.collection_item(prototype, allow_delete, button_delete_label, prototype.vars.name)|e }}'
@@ -35,10 +34,8 @@
                 </a>
             {% endif %}
         </div>
-    {% endapply %}
 {%- endblock collection_widget %}
 {% macro collection_item(form, allow_delete, button_delete_label, index) %}
-    {% spaceless %}
         <div data-form-collection="item" data-form-collection-index="{{ index }}" class="ui stackable grid">
             <div class="height wide column left action">
                 {{ form_row(form.cartItem.variant, {'remote_url': path('asdoria_shop_quick_shopping_ajax_all_product_variants_by_phrase'), 'remote_criteria_type': 'contains', 'remote_criteria_name': 'phrase', 'load_edit_url': path('asdoria_shop_quick_shopping_ajax_all_product_variants_by_codes')}) }}
@@ -70,5 +67,4 @@
                 </div>
             {% endif %}
         </div>
-    {% endspaceless %}
 {% endmacro %}
