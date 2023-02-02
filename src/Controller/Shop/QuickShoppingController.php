@@ -111,6 +111,4 @@ class QuickShoppingController
 
         return $form;
     }
-
-//    ['errors' => $form->getErrors(true, true)]
 }
