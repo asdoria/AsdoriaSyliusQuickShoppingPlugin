@@ -109,7 +109,7 @@ const initQuantityEventListener = (ele) => {
     if (!unitPrice || !currencySymbol) return;
 
     debugger
-    const pricing  = parseInt(currentTarget.value) * unitPrice;
+    const pricing  = parseFloat(parseInt(currentTarget.value) * unitPrice).toFixed(2);
     const span     = document.createElement('span')
     span.innerHTML = currencySymbol + pricing
 
