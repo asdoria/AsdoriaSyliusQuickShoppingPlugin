@@ -65,7 +65,9 @@ $.fn.extend({
             });
             element.dropdown('refresh');
             element.dropdown('set selected', element.find('input.autocomplete').val().split(',').filter(String));
-            element.dropdown('show');
+            if (response.results.length > 0) {
+              element.dropdown('show');
+            }
           },
         },
         onChange(addedValue, addedText, $addedChoice) {
