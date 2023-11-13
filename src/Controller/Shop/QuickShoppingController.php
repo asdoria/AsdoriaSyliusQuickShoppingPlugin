@@ -1,22 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Asdoria\SyliusQuickShoppingPlugin\Controller\Shop;
 
 use Asdoria\SyliusQuickShoppingPlugin\Factory\Model\BulkAddToCartCommandFactoryInterface;
-use Asdoria\SyliusQuickShoppingPlugin\Form\Type\BulkAddToCartItemType;
 use Asdoria\SyliusQuickShoppingPlugin\Form\Type\BulkAddToCartType;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
-use FOS\RestBundle\View\View;
 use Sylius\Bundle\CoreBundle\Checkout\CheckoutStateUrlGeneratorInterface;
-use Sylius\Bundle\OrderBundle\Controller\AddToCartCommandInterface;
-use Sylius\Bundle\OrderBundle\Factory\AddToCartCommandFactoryInterface;
-use Sylius\Bundle\ResourceBundle\Controller\RequestConfiguration;
-use Sylius\Component\Order\CartActions;
-use Sylius\Component\Order\Context\CartContextInterface;
 use Sylius\Component\Order\Model\OrderItemInterface;
 use Sylius\Component\Order\Modifier\OrderModifierInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
@@ -41,14 +34,10 @@ class QuickShoppingController
         protected OrderModifierInterface $orderModifier,
         protected EntityManagerInterface $cartManager,
         protected array $validationGroups,
-    )
-    {
+    ) {
     }
 
     /**
-     * @param Request $request
-     *
-     * @return Response
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -58,7 +47,7 @@ class QuickShoppingController
         $bulkAddToCartCommand = $this->bulkAddToCartCommandFactory->createWithAddToCartItems(1);
         $form = $this->formFactory->create(
             BulkAddToCartType::class,
-            $bulkAddToCartCommand
+            $bulkAddToCartCommand,
         );
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid() && $form->isSubmitted()) {
@@ -67,7 +56,7 @@ class QuickShoppingController
             $cart = $bulkAddToCartCommand->getCart();
             foreach ($form->get('cartItems') as $childForm) {
                 $addToCartCommand = $childForm->getData();
-                $errors           = $this->getCartItemErrors($addToCartCommand->getCartItem());
+                $errors = $this->getCartItemErrors($addToCartCommand->getCartItem());
                 if (0 < count($errors)) {
                     $this->getAddToCartFormWithErrors($errors, $childForm);
                 }
@@ -83,12 +72,13 @@ class QuickShoppingController
         }
 
         return new Response(
-            $this->twig->render('@AsdoriaSyliusQuickShoppingPlugin/Shop/QuickShopping/index.html.twig',
+            $this->twig->render(
+                '@AsdoriaSyliusQuickShoppingPlugin/Shop/QuickShopping/index.html.twig',
                 [
                     'form' => $form->createView(),
-                    'errors' => $form->getErrors(true, true)
-                ]
-            )
+                    'errors' => $form->getErrors(true, true),
+                ],
+            ),
         );
     }
 
@@ -96,7 +86,7 @@ class QuickShoppingController
     {
         return $this->validator
             ->validate($orderItem, null, $this->validationGroups)
-            ;
+        ;
     }
 
     protected function getAddToCartFormWithErrors(ConstraintViolationListInterface $errors, FormInterface $form): FormInterface

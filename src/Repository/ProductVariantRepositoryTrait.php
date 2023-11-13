@@ -8,26 +8,15 @@ use Sylius\Component\Channel\Model\ChannelInterface;
 
 /**
  * Class ProductVariantRepositoryTrait
- *
- * @author Philippe Vesin <pve.asdoria@gmail.com>
  */
 trait ProductVariantRepositoryTrait
 {
-    /**
-     * @param string           $phrase
-     * @param string           $locale
-     * @param ChannelInterface $channel
-     * @param int|null         $limit
-     *
-     * @return array
-     */
     public function findByPhraseAndChannel(
         string $phrase,
         string $locale,
         ChannelInterface $channel,
-        ?int $limit = null
-    ): array
-    {
+        ?int $limit = null,
+    ): array {
         $expr = $this->getEntityManager()->getExpressionBuilder();
 
         return $this->createQueryBuilder('o')
@@ -35,7 +24,7 @@ trait ProductVariantRepositoryTrait
             ->innerJoin('o.product', 'product')
             ->andWhere($expr->orX(
                 'translation.name LIKE :phrase',
-                'o.code LIKE :phrase'
+                'o.code LIKE :phrase',
             ))
             ->andWhere(':channel MEMBER OF product.channels')
             ->andWhere('product.enabled = :enabled')
@@ -49,6 +38,6 @@ trait ProductVariantRepositoryTrait
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 }

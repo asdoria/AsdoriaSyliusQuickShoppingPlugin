@@ -40,13 +40,13 @@ Asdoria\SyliusQuickShoppingPlugin\AsdoriaSyliusQuickShoppingPlugin::class => ['a
 
 ```yaml
 asdoria_quick_shopping:
-    resource: "@AsdoriaSyliusQuickShoppingPlugin/Resources/config/routing.yaml"
+    resource: "@AsdoriaSyliusQuickShoppingPlugin/config/routing.yaml"
 ```
 
 4. Import config in `config/packages/_sylius.yaml`
 ```yaml
 imports:
-    - { resource: "@AsdoriaSyliusQuickShoppingPlugin/Resources/config/config.yaml"}
+    - { resource: "@AsdoriaSyliusQuickShoppingPlugin/config/config.yaml"}
 ```
 
 5. Paste the following content to the `src/Repository/ProductVariantRepository.php`:
@@ -79,11 +79,11 @@ imports:
    
 ## Demo
 
-You can try the QuickShopping plugin online by following this link: [here!](https://demo-sylius.asdoria.fr/en_US/quick-shopping).
+You can try the QuickShopping plugin online by following this link: [here](https://demo-sylius.asdoria.fr/en_US/quick-shopping).
 
 Note that we have developed several other open source plugins for Sylius, whose demos and documentation are listed on the [following page](https://asdoria.github.io/).
 
 ## Usage
 
-1. In the shop office, go to /en_US/quick-shopping route.
+1. In the shop office, go to /en_US/quick-shopping (`asdoria_shop_quick_shopping_index` route).
 

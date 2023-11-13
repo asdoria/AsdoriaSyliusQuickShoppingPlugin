@@ -27,9 +27,6 @@ final class BulkAddToCartCommand implements BulkAddToCartCommandInterface
         return $this->cartItems;
     }
 
-    /**
-     * @return OrderInterface
-     */
     public function getCart(): OrderInterface
     {
         return $this->cart;
