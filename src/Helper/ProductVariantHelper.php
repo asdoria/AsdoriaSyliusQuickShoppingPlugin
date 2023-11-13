@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Asdoria\SyliusQuickShoppingPlugin\Helper;
 
 use Asdoria\SyliusQuickShoppingPlugin\Helper\Model\ProductVariantHelperInterface;
@@ -19,9 +18,6 @@ use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Class ProductVariantHelper
- * @package Asdoria\SyliusQuickShoppingPlugin\Helper
- *
- * @author  Philippe Vesin <pve.asdoria@gmail.com>
  */
 class ProductVariantHelper implements ProductVariantHelperInterface
 {
@@ -30,34 +26,29 @@ class ProductVariantHelper implements ProductVariantHelperInterface
         protected ChannelContextInterface $channelContext,
         protected LocaleContextInterface $localeContext,
         protected CurrencyContextInterface $currencyContext,
-        protected MoneyFormatterInterface $moneyFormatter
+        protected MoneyFormatterInterface $moneyFormatter,
     ) {
     }
 
-    /**
-     * @param ProductVariantInterface $productVariant
-     *
-     * @return string|null
-     */
     public function getImage(ProductVariantInterface $productVariant): ?string
     {
         $images = !$productVariant->getImages()->isEmpty() ?
             $productVariant->getImages() : $productVariant->getProduct()->getImages();
 
-        $image  = $images->first();
+        $image = $images->first();
 
-        if (!$image instanceof ImageInterface) return null;
+        if (!$image instanceof ImageInterface) {
+            return null;
+        }
 
         return $this->router->generate(
             'liip_imagine_filter',
             ['path' => $image->getPath(), 'filter' => 'sylius_shop_product_thumbnail'],
-            UrlGeneratorInterface::ABSOLUTE_URL
+            UrlGeneratorInterface::ABSOLUTE_URL,
         );
     }
 
     /**
-     * @param ProductVariantInterface $productVariant
-     *
      * @return mixed
      */
     public function getSlug(ProductVariantInterface $productVariant): string
@@ -66,48 +57,40 @@ class ProductVariantHelper implements ProductVariantHelperInterface
             'sylius_shop_product_show',
             ['slug' => $productVariant->getProduct()->getSlug(),
              '_locale' => $this->localeContext->getLocaleCode()],
-            UrlGeneratorInterface::ABSOLUTE_PATH
+            UrlGeneratorInterface::ABSOLUTE_PATH,
         );
     }
 
-
     /**
-     * @param ProductVariantInterface $productVariant
-     *
      * @return mixed
      */
     public function getPrice(ProductVariantInterface $productVariant): string
     {
-        $amount  = $this->getAmount($productVariant);
+        $amount = $this->getAmount($productVariant);
+
         return $this->getPriceFormat($amount);
     }
 
-    /**
-     * @return int
-     */
-    public function getAmount(ProductVariantInterface $productVariant): int {
+    public function getAmount(ProductVariantInterface $productVariant): int
+    {
         $channel = $this->channelContext->getChannel();
-        $amount  = 0;
+        $amount = 0;
 
         if ($channel instanceof ChannelInterface) {
             $channelPricing = $productVariant->getChannelPricingForChannel($channel);
-            $amount         = $channelPricing instanceof ChannelPricingInterface ?
+            $amount = $channelPricing instanceof ChannelPricingInterface ?
                 $channelPricing->getPrice() : 0;
         }
-        
+
         return $amount;
     }
 
-    /**
-     * @param int $amount
-     *
-     * @return string
-     */
-    public function getPriceFormat(int $amount): string {
+    public function getPriceFormat(int $amount): string
+    {
         return $this->moneyFormatter->format(
             $amount,
             $this->currencyContext->getCurrencyCode(),
-            $this->localeContext->getLocaleCode()
+            $this->localeContext->getLocaleCode(),
         );
     }
 }

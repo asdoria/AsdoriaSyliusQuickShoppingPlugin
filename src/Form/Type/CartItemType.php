@@ -4,22 +4,15 @@ declare(strict_types=1);
 
 namespace Asdoria\SyliusQuickShoppingPlugin\Form\Type;
 
-use Asdoria\SyliusQuickShoppingPlugin\Factory\Model\BulkAddToCartCommandFactoryInterface;
+use Sylius\Bundle\OrderBundle\Form\Type\CartItemType as BaseCartItemType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceAutocompleteChoiceType;
-use Sylius\Component\Order\Context\CartContextInterface;
-use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
-use Sylius\Bundle\OrderBundle\Form\Type\CartItemType as BaseCartItemType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Class CartItemType
- * @package Asdoria\SyliusQuickShoppingPlugin\Form\Type
- *
- * @author  Philippe Vesin <pve.asdoria@gmail.com>
  */
 class CartItemType extends BaseCartItemType
 {
@@ -48,7 +41,6 @@ class CartItemType extends BaseCartItemType
                     ],
             ]);
     }
-
 
     public function getBlockPrefix(): string
     {
