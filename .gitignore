@@ -5,6 +5,8 @@ node_modules
 /etc/build/*
 !/etc/build/.gitignore
 
+composer.lock
+
 /tests/Application/yarn.lock
 
 /.phpunit.result.cache
