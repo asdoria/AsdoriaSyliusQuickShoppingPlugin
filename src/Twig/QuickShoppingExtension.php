@@ -32,9 +32,9 @@ class QuickShoppingExtension extends AbstractExtension
 
     public function getUnitPrice(?string $price): string
     {
-        preg_match('/[+-]?[0-9]+([.][0-9]+)?([eE][+-]?[0-9]+)?/', $price, $matches);
+        preg_match('/[+-]?[0-9]+([.][0-9]+)?([eE][+-]?[0-9]+)?/', $price ?? '', $matches);
 
-        return current($matches);
+        return current($matches) ?: '';
     }
 
     public function getPrice(?string $code, ?int $quantity): string
@@ -43,6 +43,7 @@ class QuickShoppingExtension extends AbstractExtension
             return $this->productVariantHelper->getPriceFormat(0);
         }
 
+        /** @phpstan-ignore-next-line  */
         $productVariant = $this->productVariantRepository->findOneByCode($code);
         if (!$productVariant instanceof ProductVariantInterface) {
             return $this->productVariantHelper->getPriceFormat(0);
@@ -53,6 +54,7 @@ class QuickShoppingExtension extends AbstractExtension
 
     public function getImage(?string $code): ?string
     {
+        /** @phpstan-ignore-next-line  */
         $productVariant = $this->productVariantRepository->findOneByCode($code);
         if (!$productVariant instanceof ProductVariantInterface) {
             return null;
