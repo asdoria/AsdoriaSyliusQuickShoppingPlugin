@@ -37,4 +37,7 @@ jobs:
 
     - name: Easy Coding Standard GitHub Action by pietrzakadrian
       uses: pietrzakadrian/easy-coding-standard-github-action@v2.0.5
+      with:
+        config: ecs.php #configuration file
+        directories: src tests #list of directories to check (optional)
             
