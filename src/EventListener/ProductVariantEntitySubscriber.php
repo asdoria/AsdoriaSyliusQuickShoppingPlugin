@@ -23,6 +23,9 @@ class ProductVariantEntitySubscriber extends AbstractEntitySubscriber
         return ProductVariant::class;
     }
 
+    /**
+     * @return string[]
+     */
     protected function getMethodNames(): array
     {
         return ['getImage', 'getSlug', 'getPrice'];

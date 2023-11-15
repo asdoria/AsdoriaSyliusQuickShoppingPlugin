@@ -43,19 +43,17 @@ class QuickShoppingExtension extends AbstractExtension
             return $this->productVariantHelper->getPriceFormat(0);
         }
 
-        /** @phpstan-ignore-next-line  */
-        $productVariant = $this->productVariantRepository->findOneByCode($code);
+        $productVariant = $this->productVariantRepository->findOneBy(['code' => $code]);
         if (!$productVariant instanceof ProductVariantInterface) {
             return $this->productVariantHelper->getPriceFormat(0);
         }
 
-        return $this->productVariantHelper->getPriceFormat($this->productVariantHelper->getAmount($productVariant) * $quantity);
+        return $this->productVariantHelper->getPriceFormat($this->productVariantHelper->getAmount($productVariant) * (int) $quantity);
     }
 
     public function getImage(?string $code): ?string
     {
-        /** @phpstan-ignore-next-line  */
-        $productVariant = $this->productVariantRepository->findOneByCode($code);
+        $productVariant = $this->productVariantRepository->findOneBy(['code' => $code]);
         if (!$productVariant instanceof ProductVariantInterface) {
             return null;
         }

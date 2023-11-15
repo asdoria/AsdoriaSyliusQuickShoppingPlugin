@@ -40,7 +40,7 @@ class BulkAddToCartType extends AbstractResourceType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'entry_options' => [
-                    'empty_data' => function (FormInterface $form) {
+                    'empty_data' => function (FormInterface $_) {
                         /** @var OrderInterface $cart */
                         $cart = $this->cartContext->getCart();
 

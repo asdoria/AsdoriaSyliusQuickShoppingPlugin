@@ -14,13 +14,13 @@ declare(strict_types=1);
 namespace Asdoria\SyliusQuickShoppingPlugin\Controller\Shop;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Sylius\Bundle\OrderBundle\Controller\AddToCartCommandInterface;
 use Sylius\Component\Core\Model\OrderInterface;
-use Sylius\Component\Core\Model\OrderItemInterface;
 
 interface BulkAddToCartCommandInterface
 {
     /**
-     * @return ArrayCollection<array-key,OrderItemInterface>
+     * @return ArrayCollection<array-key,AddToCartCommandInterface>
      */
     public function getAddToCartCommandItems(): ArrayCollection;
 

@@ -25,6 +25,9 @@ use Twig\Error\SyntaxError;
 
 class QuickShoppingController
 {
+    /**
+     * @param string[]                             $validationGroups
+     */
     public function __construct(
         protected Environment $twig,
         protected FormFactoryInterface $formFactory,

@@ -45,6 +45,7 @@ final class BulkAddToCartCommandFactory implements BulkAddToCartCommandFactoryIn
     {
         /** @var OrderInterface $cart */
         $cart = $this->cartContext->getCart();
+        /** @var ArrayCollection<array-key,AddToCartCommandInterface> $cartItems */
         $cartItems = new ArrayCollection();
         for ($i = 0; $i < $nbr; ++$i) {
             $cartItems->add($this->createAddToCartCommand($cart));
