@@ -25,6 +25,9 @@ use Twig\Error\SyntaxError;
 
 class QuickShoppingController
 {
+    /**
+     * @param string[]                             $validationGroups
+     */
     public function __construct(
         protected Environment $twig,
         protected FormFactoryInterface $formFactory,
@@ -55,6 +58,7 @@ class QuickShoppingController
             $bulkAddToCartCommand = $form->getData();
             $cart = $bulkAddToCartCommand->getCart();
             foreach ($form->get('cartItems') as $childForm) {
+                /** @var AddToCartCommand $addToCartCommand */
                 $addToCartCommand = $childForm->getData();
                 $errors = $this->getCartItemErrors($addToCartCommand->getCartItem());
                 if (0 < count($errors)) {
@@ -96,7 +100,7 @@ class QuickShoppingController
                 ? $form->get('cartItem')
                 : $form->get('cartItem')->get($error->getPropertyPath());
 
-            $formSelected->addError(new FormError($error->getMessage()));
+            $formSelected->addError(new FormError((string) $error->getMessage()));
         }
 
         return $form;

@@ -1,0 +1,10 @@
+# Put your Behat suites definitions here
+
+default:
+    suites:
+        greeting_customer:
+            contexts:
+                - asdoria_sylius_quick_shopping.context.ui.shop.welcome
+
+            filters:
+                tags: "@greeting_customer"

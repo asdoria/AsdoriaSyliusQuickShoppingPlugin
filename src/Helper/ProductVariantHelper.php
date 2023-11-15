@@ -10,6 +10,7 @@ use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ChannelPricingInterface;
 use Sylius\Component\Core\Model\ImageInterface;
+use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Currency\Context\CurrencyContextInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
@@ -32,8 +33,10 @@ class ProductVariantHelper implements ProductVariantHelperInterface
 
     public function getImage(ProductVariantInterface $productVariant): ?string
     {
+        /** @var ProductInterface $product */
+        $product = $productVariant->getProduct();
         $images = !$productVariant->getImages()->isEmpty() ?
-            $productVariant->getImages() : $productVariant->getProduct()->getImages();
+            $productVariant->getImages() : $product->getImages();
 
         $image = $images->first();
 
@@ -48,22 +51,19 @@ class ProductVariantHelper implements ProductVariantHelperInterface
         );
     }
 
-    /**
-     * @return mixed
-     */
     public function getSlug(ProductVariantInterface $productVariant): string
     {
+        /** @var ProductInterface $product */
+        $product = $productVariant->getProduct();
+
         return $this->router->generate(
             'sylius_shop_product_show',
-            ['slug' => $productVariant->getProduct()->getSlug(),
+            ['slug' => $product->getSlug(),
              '_locale' => $this->localeContext->getLocaleCode()],
             UrlGeneratorInterface::ABSOLUTE_PATH,
         );
     }
 
-    /**
-     * @return mixed
-     */
     public function getPrice(ProductVariantInterface $productVariant): string
     {
         $amount = $this->getAmount($productVariant);
@@ -79,7 +79,7 @@ class ProductVariantHelper implements ProductVariantHelperInterface
         if ($channel instanceof ChannelInterface) {
             $channelPricing = $productVariant->getChannelPricingForChannel($channel);
             $amount = $channelPricing instanceof ChannelPricingInterface ?
-                $channelPricing->getPrice() : 0;
+                $channelPricing->getPrice() ?? 0 : 0;
         }
 
         return $amount;

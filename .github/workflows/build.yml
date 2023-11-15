@@ -85,8 +85,8 @@ jobs:
             -
                 name: Validate composer.json
                 run: composer validate --ansi --strict
-        
-            - 
+
+            -
                 name: Run ECS
                 run: vendor/bin/ecs check --config=ecs.php --clear-cache src tests
 
@@ -109,3 +109,4 @@ jobs:
             -
                 name: Run Behat
                 run: vendor/bin/behat --colors -vvv --no-interaction || vendor/bin/behat --colors -vvv --no-interaction --rerun
+

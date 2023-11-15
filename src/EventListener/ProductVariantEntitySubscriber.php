@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Asdoria\SyliusQuickShoppingPlugin\EventListener;
 
-use App\Entity\Product\ProductVariant;
 use Asdoria\SyliusQuickShoppingPlugin\Helper\Model\ProductVariantHelperInterface;
+use Sylius\Component\Core\Model\ProductVariant;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 
 /**
@@ -23,6 +23,9 @@ class ProductVariantEntitySubscriber extends AbstractEntitySubscriber
         return ProductVariant::class;
     }
 
+    /**
+     * @return string[]
+     */
     protected function getMethodNames(): array
     {
         return ['getImage', 'getSlug', 'getPrice'];
@@ -33,17 +36,11 @@ class ProductVariantEntitySubscriber extends AbstractEntitySubscriber
         return $this->productVariantHelper->getImage($productVariant);
     }
 
-    /**
-     * @return mixed
-     */
     public function getSlug(ProductVariantInterface $productVariant): string
     {
         return $this->productVariantHelper->getSlug($productVariant);
     }
 
-    /**
-     * @return mixed
-     */
     public function getPrice(ProductVariantInterface $productVariant): string
     {
         return $this->productVariantHelper->getPrice($productVariant);

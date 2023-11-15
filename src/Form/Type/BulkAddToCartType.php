@@ -6,6 +6,7 @@ namespace Asdoria\SyliusQuickShoppingPlugin\Form\Type;
 
 use Asdoria\SyliusQuickShoppingPlugin\Factory\Model\BulkAddToCartCommandFactoryInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -39,8 +40,11 @@ class BulkAddToCartType extends AbstractResourceType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'entry_options' => [
-                    'empty_data' => function (FormInterface $form) {
-                        return $this->bulkAddToCartCommandFactory->createAddToCartCommand($this->cartContext->getCart());
+                    'empty_data' => function (FormInterface $_) {
+                        /** @var OrderInterface $cart */
+                        $cart = $this->cartContext->getCart();
+
+                        return $this->bulkAddToCartCommandFactory->createAddToCartCommand($cart);
                     },
                 ],
             ])

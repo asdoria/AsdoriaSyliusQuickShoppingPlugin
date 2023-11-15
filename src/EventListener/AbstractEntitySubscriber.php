@@ -8,6 +8,7 @@ namespace Asdoria\SyliusQuickShoppingPlugin\EventListener;
 use JMS\Serializer\EventDispatcher\Events;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\ObjectEvent;
+use JMS\Serializer\JsonSerializationVisitor;
 use JMS\Serializer\Metadata\StaticPropertyMetadata;
 use JMS\Serializer\Metadata\VirtualPropertyMetadata;
 
@@ -25,11 +26,14 @@ abstract class AbstractEntitySubscriber implements EventSubscriberInterface
 
     public function onPostSerialize(ObjectEvent $event): void
     {
+        /** @var string $methodName */
         foreach ($this->getMethodNames() as $methodName) {
+            /** @var JsonSerializationVisitor $visitor */
             $visitor = $event->getVisitor();
             $metadata = new VirtualPropertyMetadata(static::getClassName(), $methodName);
 
             if (!$visitor->hasData($metadata->name)) {
+                /** @var mixed $value */
                 $value = $this->{$methodName}($event->getObject());
                 $visitor->visitProperty(
                     new StaticPropertyMetadata(static::getClassName(), $metadata->name, $value),

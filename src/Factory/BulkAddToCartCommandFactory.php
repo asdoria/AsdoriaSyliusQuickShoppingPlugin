@@ -19,6 +19,8 @@ use Asdoria\SyliusQuickShoppingPlugin\Factory\Model\BulkAddToCartCommandFactoryI
 use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Bundle\OrderBundle\Controller\AddToCartCommandInterface;
 use Sylius\Bundle\OrderBundle\Factory\AddToCartCommandFactoryInterface;
+use Sylius\Component\Core\Model\OrderInterface;
+use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Order\Context\CartContextInterface;
 use Sylius\Component\Order\Modifier\OrderItemQuantityModifierInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
@@ -28,6 +30,9 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
  */
 final class BulkAddToCartCommandFactory implements BulkAddToCartCommandFactoryInterface
 {
+    /**
+     * @param FactoryInterface<OrderItemInterface> $orderItemFactory
+     */
     public function __construct(
         protected CartContextInterface $cartContext,
         protected FactoryInterface $orderItemFactory,
@@ -38,7 +43,9 @@ final class BulkAddToCartCommandFactory implements BulkAddToCartCommandFactoryIn
 
     public function createWithAddToCartItems(int $nbr): BulkAddToCartCommandInterface
     {
+        /** @var OrderInterface $cart */
         $cart = $this->cartContext->getCart();
+        /** @var ArrayCollection<array-key,AddToCartCommandInterface> $cartItems */
         $cartItems = new ArrayCollection();
         for ($i = 0; $i < $nbr; ++$i) {
             $cartItems->add($this->createAddToCartCommand($cart));
@@ -47,7 +54,7 @@ final class BulkAddToCartCommandFactory implements BulkAddToCartCommandFactoryIn
         return new BulkAddToCartCommand($cart, $cartItems);
     }
 
-    public function createAddToCartCommand($cart): AddToCartCommandInterface
+    public function createAddToCartCommand(OrderInterface $cart): AddToCartCommandInterface
     {
         $orderItem = $this->orderItemFactory->createNew();
         $this->orderItemQuantityModifier->modify($orderItem, 1);

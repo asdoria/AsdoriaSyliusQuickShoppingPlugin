@@ -1,9 +1,10 @@
 /vendor/
 /node_modules/
 node_modules
-/.github/*
 /etc/build/*
 !/etc/build/.gitignore
+
+composer.lock
 
 /tests/Application/yarn.lock
 
