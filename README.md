@@ -1,14 +1,17 @@
-<p align="center">
-</p>
+# Asdoria QuickShopping Bundle
 
+[![Build](https://github.com/asdoria/AsdoriaSyliusQuickShoppingPlugin/actions/workflows/build.yml/badge.svg)](https://github.com/asdoria/AsdoriaSyliusQuickShoppingPlugin/actions/workflows/build.yml)
+[![License](http://poser.pugx.org/asdoria/sylius-quick-shopping-plugin/license)](https://packagist.org/packages/asdoria/sylius-quick-shopping-plugin) 
+[![Latest Stable Version](http://poser.pugx.org/asdoria/sylius-quick-shopping-plugin/v)](https://packagist.org/packages/asdoria/sylius-quick-shopping-plugin) 
+[![Total Downloads](http://poser.pugx.org/asdoria/sylius-quick-shopping-plugin/downloads)](https://packagist.org/packages/asdoria/sylius-quick-shopping-plugin)
+[![Latest Unstable Version](http://poser.pugx.org/asdoria/sylius-quick-shopping-plugin/v/unstable)](https://packagist.org/packages/asdoria/sylius-quick-shopping-plugin) 
 
-<h1 align="center">Asdoria QuickShopping Bundle</h1>
+Simple QuickShopping management for Sylius Shops. Add multiple products to your cart using a single page!
 
-<p align="center">Simply QuickShopping's Managment into Sylius Shop</p>
 
 ## Features
 
-+ Add multiple variants to your shopping cart by name or sku
++ Add multiple variants to your shopping cart by name or code
 
 <div style="max-width: 75%; height: auto; margin: auto">
  
