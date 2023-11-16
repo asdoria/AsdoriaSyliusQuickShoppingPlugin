@@ -1,3 +1,6 @@
+![Banner](doc/banner.png)
+
+
 # Asdoria QuickShopping Bundle
 
 [![Build](https://github.com/asdoria/AsdoriaSyliusQuickShoppingPlugin/actions/workflows/build.yml/badge.svg)](https://github.com/asdoria/AsdoriaSyliusQuickShoppingPlugin/actions/workflows/build.yml)
