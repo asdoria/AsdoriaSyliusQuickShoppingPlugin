@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const initDropDownSyliusAutocomplete = () => {
   const targetNode       = document.querySelector("form.ui.loadable.form div[data-form-collection='list']");
+  if (!targetNode) return;
+
   const config           = { childList: true };
   const observerRefresh  = new MutationObserver((e) => {
     e.forEach(({target}) => {
