@@ -1,7 +1,7 @@
 ![Banner](doc/banner.png)
 
 
-# Asdoria QuickShopping Bundle
+# Asdoria Quick Shopping Plugin
 
 [![Build](https://github.com/asdoria/AsdoriaSyliusQuickShoppingPlugin/actions/workflows/build.yml/badge.svg)](https://github.com/asdoria/AsdoriaSyliusQuickShoppingPlugin/actions/workflows/build.yml)
 [![License](http://poser.pugx.org/asdoria/sylius-quick-shopping-plugin/license)](https://packagist.org/packages/asdoria/sylius-quick-shopping-plugin) 
