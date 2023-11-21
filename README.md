@@ -33,7 +33,7 @@ Simple QuickShopping management for Sylius Shops. Add multiple products to your 
 ## Installation
 
 ---
-1. run `composer require asdoria/sylius-quick-shopping-plugin`
+1. Run `composer require asdoria/sylius-quick-shopping-plugin`
 
 
 2. Add the bundle in `config/bundles.php`.
@@ -91,5 +91,13 @@ Note that we have developed several other open source plugins for Sylius, whose 
 
 ## Usage
 
-1. In the shop office, go to /en_US/quick-shopping (`asdoria_shop_quick_shopping_index` route).
+In the shop office, go to /en_US/quick-shopping (`asdoria_shop_quick_shopping_index` route).
+
+## Contribution
+
+Wish to contribute? Please do! We are always looking for improving this plugin. To do so, feel free to raise PR or issues on this repo.
+
+This plugin is part of Asdoria work on Open Source, feel free to look on our current as well as future work on [our website](https://asdoria.github.io/).
+
+Have a nice day :)
 
